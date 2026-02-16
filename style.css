@@ -1,11 +1,13 @@
-/* 기본 변수 설정 */
+/* 전역 변수 설정 */
 :root {
-    --primary-color: #2c3e50;    /* 깊은 네이비 (신뢰감) */
-    --accent-color: #3498db;     /* 밝은 블루 (강조) */
-    --bg-color: #ffffff;        /* 배경 화이트 */
-    --section-bg: #f8f9fa;      /* 섹션 구분용 연한 그레이 */
+    --primary-color: #2c3e50;    /* 신뢰감을 주는 네이비 */
+    --accent-color: #3498db;     /* 포인트 블루 */
+    --award-color: #f1c40f;      /* 수상 강조용 골드 */
+    --bg-color: #ffffff;
+    --section-bg: #f8f9fa;       /* 연한 그레이 배경 */
     --text-color: #333333;
     --light-text: #666666;
+    --border-color: #eeeeee;
 }
 
 /* 기본 스타일 */
@@ -64,10 +66,10 @@ header p {
     text-decoration: underline;
 }
 
-/* 섹션 공통 */
+/* 섹션 공통 스타일 */
 section {
     padding: 60px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
 }
 
 section:last-child {
@@ -77,7 +79,7 @@ section:last-child {
 h2 {
     font-size: 1.8rem;
     color: var(--primary-color);
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     position: relative;
     display: inline-block;
 }
@@ -87,32 +89,32 @@ h2::after {
     position: absolute;
     bottom: -8px;
     left: 0;
-    width: 40px;
+    width: 45px;
     height: 3px;
     background-color: var(--accent-color);
 }
 
 /* 학력(Education) 스타일 */
 .edu-item {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .edu-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 }
 
 .edu-header strong {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: #1a1a1a;
 }
 
 .edu-header span {
     color: var(--accent-color);
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .edu-item p {
@@ -120,15 +122,51 @@ h2::after {
     color: var(--light-text);
 }
 
-/* 기술(Skills) 스타일 */
-#skills p {
-    background: var(--section-bg);
-    padding: 15px 20px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+/* 핵심 역량(Core Competencies) 그리드 레이아웃 */
+.skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
-/* 논문(Publications) 스타일 */
+.skill-item {
+    background: var(--section-bg);
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 5px solid var(--accent-color);
+    transition: transform 0.2s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-3px);
+}
+
+.skill-item strong {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+.skill-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* 수상 내역(Awards) 스타일 */
+.award-item {
+    padding: 10px 0;
+}
+
+.award-desc {
+    font-size: 0.95rem;
+    color: var(--accent-color);
+    margin-top: 5px !important;
+    font-weight: 500;
+}
+
+/* 논문 실적(Publications) 스타일 */
 .pub-list {
     list-style: none;
     padding: 0;
@@ -138,6 +176,7 @@ h2::after {
     display: flex;
     gap: 30px;
     margin-bottom: 35px;
+    padding: 10px 0;
 }
 
 .date {
@@ -156,30 +195,46 @@ h2::after {
     color: #222;
 }
 
-.pub-content p {
-    margin: 4px 0;
-    color: #555;
-}
-
 .venue {
     font-style: italic;
-    color: var(--light-text) !important;
-    font-size: 0.95rem;
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+/* 수상 논문 하이라이트 (🏆 우수 발표상) */
+.highlight-pub {
+    background-color: #fffcf0;
+    padding: 20px !important;
+    border-radius: 12px;
+    border: 1px solid #ffeeba !important;
+}
+
+.award-badge {
+    background-color: var(--award-color);
+    color: #000;
+    padding: 2px 10px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-right: 8px;
+    vertical-align: middle;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* 푸터 */
 footer {
     background: var(--section-bg);
     text-align: center;
-    padding: 40px 0;
+    padding: 50px 0;
     color: #999;
     font-size: 0.9rem;
 }
 
-/* 모바일 대응 (반응형) */
+/* 반응형 대응 (모바일) */
 @media (max-width: 768px) {
     header h1 { font-size: 2.2rem; }
-    .pub-list li { flex-direction: column; gap: 5px; }
-    .date { padding-top: 0; margin-bottom: 5px; }
-    .edu-header { flex-direction: column; }
+    .skill-grid { grid-template-columns: 1fr; }
+    .edu-header { flex-direction: column; gap: 5px; }
+    .pub-list li { flex-direction: column; gap: 8px; }
+    .date { min-width: auto; }
 }
